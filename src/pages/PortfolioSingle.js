@@ -11,7 +11,7 @@ import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
 function PortfolioSingle() {
     const location = useLocation();
     var state;
-    if (location.state != null) {
+    if (location.state) {
         state = location.state;
     }
     else {
@@ -30,7 +30,7 @@ function PortfolioSingle() {
           'embedded-asset-block': (image) =>
             '<img src="' + image.data.target.fields.file.url + '"/>'
         }
-      }
+    }
 
     useEffect (() => {
         window.scrollTo({top: 0, left: 0});
@@ -52,13 +52,13 @@ function PortfolioSingle() {
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-md-6 text-center featured-image">
+                        <div className="col-md-6 text-center featured-image" id="featured-image">
                             {state.externalLink ? 
                                 <a href={state.externalLink} target="_blank"> 
-                                    <img src={state.imageSrc} />
+                                    <img src={state.image.fullSrc} />
                                 </a>
                                 : 
-                                <img src={state.imageSrc} />}
+                                <img src={state.image.fullSrc} />}
                         </div>
                         <div className="col-md-6 text-left">
                             <h1>{state.title}</h1>

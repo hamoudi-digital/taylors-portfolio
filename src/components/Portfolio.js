@@ -27,10 +27,41 @@ function Portfolio() {
         client.getEntries().then(function(entries){
             var realPortfolioData = [];
             entries.items.forEach(function(entry) {
+
+                // image file and variables for dynamic image sizing
+                let file = entry.fields.featured_image.fields.file;
+                let assetWidth = file.details.image.width;
+                let assetHeight = file.details.image.height;
+                let aspectRatio = assetWidth / assetHeight;
+                let renderedWidth;
+                let renderedHeight;
+                let previewSrc;
+                let fullSrc;
+
+                // for preview image - sets rendered width and height based on screen size and orignal file aspect ratio
+                if (window.screen.width > 991) {
+                    renderedWidth = Math.ceil((document.querySelector('.section .container .col-12').offsetWidth / 3) - 20);
+                }
+                else {
+                    renderedWidth = Math.ceil(document.querySelector('.section .container .col-12').offsetWidth);
+                }
+                renderedHeight =  Math.ceil(renderedWidth / aspectRatio);
+                previewSrc = file.url + '?w=' + renderedWidth + '&h='+ renderedHeight;
+
+                // for enlarged image - sets rendered width and height based on screen size and orignal file aspect ratio
+                renderedWidth =  Math.ceil(document.querySelector('.section .container .col-md-6').offsetWidth);
+                renderedHeight =  Math.ceil(renderedWidth / aspectRatio);
+                fullSrc = file.url + '?w=' + renderedWidth + '&h='+ renderedHeight;
+
                 realPortfolioData.push(
                     {
                         id: entry.sys.id,
-                        imageSrc: entry.fields.featured_image.fields.file.url,
+                        image: {
+                            src: file.url,
+                            aspectRatio: aspectRatio,
+                            previewSrc: previewSrc,
+                            fullSrc: fullSrc
+                        },
                         title: entry.fields.title,
                         category: entry.fields.category,
                         description: (entry.fields.description ? entry.fields.description : null),
@@ -44,16 +75,21 @@ function Portfolio() {
                 return (
                     <div className={'portfolio-item ' + portfolioItem.category.replace(' ', '-') + ' active'} 
                     key={portfolioItem.id}>
-                        {/* <Link to={'/portfolio/' + encodeURI(portfolioItem.title.replace(/\s+/g, '-').toLowerCase())} state={{ */}
                         <Link to={'/portfolio'} state={{
                             id: portfolioItem.id,
-                            imageSrc: portfolioItem.imageSrc,
+                            image: {
+                                src: portfolioItem.image.src,
+                                aspectRatio: portfolioItem.image.aspectRatio,
+                                previewSrc: portfolioItem.image.previewSrc,
+                                fullSrc: portfolioItem.image.fullSrc
+                            },
+                            imageSrc: portfolioItem.image.src,
                             title: portfolioItem.title,
                             category: portfolioItem.category,
                             description: portfolioItem.description,
                             externalLink: portfolioItem.externalLink
                         }}>
-                            <img src={portfolioItem.imageSrc}/>
+                            <img src={portfolioItem.image.previewSrc}/>
                             <div className='portfolio-overlay'></div>
                             <div className='portfolio-content'>
                                 <h5>{portfolioItem.title}</h5>
