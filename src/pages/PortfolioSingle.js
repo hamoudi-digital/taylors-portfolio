@@ -17,7 +17,9 @@ function PortfolioSingle() {
     else {
         state = {
             id: 0,
-            imageSrc: 'http://images.ctfassets.net/pehpejwgu7h3/58yyJfMTv9QfWV9U4lpBHX/97c6604e1abdd50edaad9759001e1dee/5D15BD16-E3FF-4807-8244-548063A73C68.png',
+            image: {
+                fullSrc: 'http://images.ctfassets.net/pehpejwgu7h3/58yyJfMTv9QfWV9U4lpBHX/97c6604e1abdd50edaad9759001e1dee/5D15BD16-E3FF-4807-8244-548063A73C68.png',
+            },
             title: 'Introducing Taylor',
             category: 'Character Design',
             description: '',
