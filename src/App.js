@@ -15,8 +15,6 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='portfolio' element={<PortfolioSingle />} />
         <Route path='about' element={<AboutPage />} />
-        {/* <Route path='contact' element={<ContactPage />} /> */}
-        {/* <Route path='portfolio/:portfolioTitle' element={<PortfolioSingle />} /> */}
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </Router>
