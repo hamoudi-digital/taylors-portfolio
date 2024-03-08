@@ -3,8 +3,12 @@ import React from 'react';
 import logo from '../assets/logo.png'
 import { useEffect } from 'react';
 import { HashLink as Link} from 'react-router-hash-link';
+import { useLocation } from 'react-router-dom'
 
 function Navigation() {
+    const location = useLocation();
+    const state = location.state;
+
     let activeMenu = false;
 
     const menuToggle = () => {
@@ -59,13 +63,13 @@ function Navigation() {
             <div className="main-menu" id='main-menu'>
                 <ul>
                     <li>
-                        <Link to='/' onClick={menuClick}>Portfolio</Link>
+                        <Link to='/#' onClick={menuClick} state={state}>Portfolio</Link>
                     </li>
                     <li>
-                        <Link to='/about' onClick={menuClick}>About</Link>
+                        <Link to='/about' onClick={menuClick} state={state}>About</Link>
                     </li>
                     <li>
-                        <Link to='#contact' onClick={menuClick}>Contact</Link>
+                        <Link to='#contact' onClick={menuClick} state={state}>Contact</Link>
                     </li>
                 </ul>
             </div>

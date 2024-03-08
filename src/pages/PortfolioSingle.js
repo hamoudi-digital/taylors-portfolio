@@ -11,13 +11,7 @@ import PageNotFound from "./PageNotFound";
 function PortfolioSingle() {
     const location = useLocation();
     
-    var state;
-    if (location.state) {
-        state = location.state;
-    }
-    else {
-        state = false;
-    }
+    const state = location.state;
 
     let renderOptions = {
         renderNode: {
