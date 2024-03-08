@@ -107,7 +107,7 @@ a:hover {
 }
 .navigation .logo-container img{
   width: 100%;
-  max-width: 120px;
+  max-width: 100px;
   height: auto;
 }
 .navigation .name-wrap span {
@@ -349,6 +349,9 @@ a:hover {
   }
 }
 /*** PORTFOLIO SINGLE PAGE STYLES ***/
+.portfolio-single.section {
+  padding-bottom: 0;
+}
 .portfolio-single .breadcrumbs{
   margin-bottom: 20px;
   font-family: var(--silence);

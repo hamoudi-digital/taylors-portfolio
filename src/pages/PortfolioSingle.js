@@ -3,6 +3,7 @@
 import React, { useEffect } from "react";
 import Footer from "../components/Footer";
 import Navigation from "../components/Navigation";
+import About from "../components/About";
 import ContactCallout from "../components/ContactCallout";
 import { Link, useLocation } from "react-router-dom";
 import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
@@ -32,7 +33,7 @@ function PortfolioSingle() {
         return (
             <main>
                 <Navigation />
-                <div className="portfolio-single section">
+                <div className="portfolio-single section" id="portfolio-single">
                     <div className="container">
                          <div className="row">
                             <div className="col-12">
@@ -59,6 +60,7 @@ function PortfolioSingle() {
                         </div>
                     </div>
                 </div>
+                <About />
                 <ContactCallout />
                 <Footer />
             </main>

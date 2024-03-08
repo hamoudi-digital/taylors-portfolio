@@ -66,7 +66,7 @@ function Navigation() {
                         <Link to='/#' onClick={menuClick} state={state}>Portfolio</Link>
                     </li>
                     <li>
-                        <Link to='/about' onClick={menuClick} state={state}>About</Link>
+                        <Link to='#about' onClick={menuClick} state={state}>About</Link>
                     </li>
                     <li>
                         <Link to='#contact' onClick={menuClick} state={state}>Contact</Link>
