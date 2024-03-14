@@ -9,11 +9,14 @@ import { Link, useLocation } from "react-router-dom";
 import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
 import PageNotFound from "./PageNotFound";
 
+// Portfolio Single page - utilized to showcase more details on portfolio item after it is selected from the home page
 function PortfolioSingle() {
+
+    // retreive state
     const location = useLocation();
-    
     const state = location.state;
 
+    // set render options of image
     let renderOptions = {
         renderNode: {
           'embedded-asset-block': (image) =>
@@ -22,13 +25,17 @@ function PortfolioSingle() {
     }
 
     useEffect (() => {
+        // if state is passed format html for the description of portolio item
         if (state) {
+            // scroll to top of page
             window.scrollTo({top: 0, left: 0});
+
             let descriptionHtml = documentToHtmlString(state.description, renderOptions);
             document.querySelector('.portfolio-single .description').innerHTML = descriptionHtml;
         }
     });
 
+    // if state is passed, render the portfolio single elements based on information from the state
     if (state) {
         return (
             <main>
@@ -66,6 +73,7 @@ function PortfolioSingle() {
             </main>
         );
     }
+    // if no state is passed, display "Page Not Found" page instead in order for user to navigate home
     else {
         return(<PageNotFound />);
     }

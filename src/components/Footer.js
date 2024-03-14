@@ -2,6 +2,8 @@
 
 import React from 'react';
 
+
+// Footer section featuring social media links
 function Footer() {
     return (
         <div className='footer section' id='footer'>

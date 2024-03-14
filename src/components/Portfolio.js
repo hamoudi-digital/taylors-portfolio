@@ -5,26 +5,33 @@ import Masonry from 'masonry-layout';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 
 function Portfolio() {
+    // Set variables for current state
     const [portfolio, setPortfolio] = useState(null);
     const [loaded, setLoaded] = useState(false);
+
+    // Array of all categories to be used in UI filter
     const filterCategories = ['all', 'children books', 'character design', 'prints']; 
+
+    // set Contentful variables to interact with API
     var contentful = require('contentful');
     var newMasonry = null;
     const space_id = process.env.REACT_APP_CONTENTFUL_SPACE;
     const api_token = process.env.REACT_APP_CONTENTFUL_API_TOKEN;
 
-
-
+    // Creates filter elements for each filter category
     let filterItems = filterCategories.map(function (filterCategory) {
         return <div className={'filter-item '+filterCategory} key={filterCategory} onClick={() => filterPortfolio(filterCategory)}><h4>{filterCategory}</h4></div>
     });
 
     useEffect(() => {
 
+        // client to interact with API
         var client = contentful.createClient({
             space: space_id,
             accessToken: api_token
         });
+
+        // Retreive and format portfoloio entries from Contentful
         client.getEntries().then(function(entries){
             var realPortfolioData = [];
             entries.items.forEach(function(entry) {
@@ -54,6 +61,7 @@ function Portfolio() {
                 renderedHeight =  Math.ceil(renderedWidth / aspectRatio);
                 fullSrc = file.url + '?w=' + renderedWidth + '&h='+ renderedHeight;
 
+                // format entry data and push to array
                 realPortfolioData.push(
                     {
                         id: entry.sys.id,
@@ -70,8 +78,11 @@ function Portfolio() {
                     }
                 );
             });
+
+            // reverse order of portfolio items
             realPortfolioData.reverse();
-            var i = 0;
+
+            // create portfolio elements based off of retreived portfolio data
             var currentPortfolioItems = realPortfolioData.map((portfolioItem) => {
                 return (
                     <div className={'portfolio-item ' + portfolioItem.category.replace(' ', '-') + ' active'} 
@@ -100,8 +111,12 @@ function Portfolio() {
                     </div>
                 )
             });
+
+            // set state to current porfolio elements
             setPortfolio(currentPortfolioItems);
         });
+
+        // Format portfolio container element to utilize masonry layout
         var elem = document.querySelector('.portfolio-container');
         newMasonry = new Masonry( elem, {
             itemSelector: '.portfolio-item',
@@ -111,8 +126,10 @@ function Portfolio() {
 
         if (document.readyState === 'complete') {
             setLoaded(true);
-          } 
+        } 
     })
+
+    // Filters portfolio items in UI based on selected filter category
     const filterPortfolio = (category) => {
         let items = document.getElementsByClassName('portfolio-item');
         let filters= document.getElementsByClassName('filter-item');

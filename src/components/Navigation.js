@@ -5,12 +5,15 @@ import { useEffect } from 'react';
 import { HashLink as Link} from 'react-router-hash-link';
 import { useLocation } from 'react-router-dom'
 
+
+// Website navigation section featuring site title, logo, and navigation menu
 function Navigation() {
+    // retreives the current state
     const location = useLocation();
     const state = location.state;
-
     let activeMenu = false;
 
+    // Toggles the menu to set and disable active status. When active, the menu displays
     const menuToggle = () => {
         activeMenu = !activeMenu;
         let navigation = document.getElementById('navigation');
@@ -24,6 +27,8 @@ function Navigation() {
             mainMenu.classList.remove('active');
         }
     }
+
+    // Initials a click event for the navigation toggle. Applies after a menu item is clicked.
     const menuClick = () => {
         var navToggle = document.querySelector('#nav-toggle');
         navToggle.click();

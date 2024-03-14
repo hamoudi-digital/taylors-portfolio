@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
 import Navigation from "../components/Navigation";
 
+// A catchall page utilized like a 404 page. Used if navigating to a route that doesn't exist
 function PageNotFound() {
     return (
         <main>

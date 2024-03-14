@@ -3,6 +3,7 @@
 import React from 'react';
 import taylorPhoto from '../assets/taylor-n-white.jpg';
 
+// About section which showcases bio and photo
 function About() {
     return (
         <div className='about section' id='about'>

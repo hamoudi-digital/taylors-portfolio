@@ -6,6 +6,7 @@ import About from "../components/About";
 import Footer from "../components/Footer";
 import ContactCallout from "../components/ContactCallout";
 
+// Home page - majority of site interaction occurs here
 function Home() {
     useEffect (() => {
         window.scrollTo({top: 0, left: 0});

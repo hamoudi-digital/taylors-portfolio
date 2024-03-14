@@ -3,6 +3,8 @@
 import React from "react";
 import { HashLink as Link} from 'react-router-hash-link';
 
+
+// Contact section which features a call to action to email.
 function ContactCallout() {
     return (
         <div className="callout section" id="contact">
