@@ -4,6 +4,8 @@ import React, { useRef, useEffect, useState, state } from 'react';
 import Masonry from 'masonry-layout';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 
+
+// Portfolio section which features portfolio items to showcase to users
 function Portfolio() {
     // Set variables for current state
     const [portfolio, setPortfolio] = useState(null);
